@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .mind-map {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .central-concept {
+      background-color: #3498db;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      display: inline-block;
+      font-weight: bold;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .central-concept:hover {
+      transform: scale(1.05);
+      background-color: #2980b9;
+    }
+    
+    .branches {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    
+    .branch {
+      width: 23%;
+      margin-bottom: 20px;
+    }
+    
+    .branch-title {
+      background-color: #27ae60;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 15px;
+    }
+    
+    .branch-title:hover {
+      transform: scale(1.05);
+      background-color: #219653;
+    }
+    
+    .sub-concepts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .sub-concept {
+      background-color: #9b59b6;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      margin: 5px 0;
+      width: 90%;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+    
+    .sub-concept:hover {
+      transform: scale(1.05);
+      background-color: #8e44ad;
+    }
+    
+    .info-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 80%;
+      max-height: 80%;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+    }
+    
+    .info-title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .info-content {
+      line-height: 1.6;
+      color: #555;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .close-btn:hover {
+      background-color: #c0392b;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 999;
+      display: none;
+    }
+    
+    .highlight {
+      font-weight: bold;
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="mind-map">
+      <!-- Central Concept -->
+      <div class="central-concept" onclick="showInfo('Machine Learning', '<ul><li>The field of study that gives <span class=&quot;highlight&quot;>computers</span> the ability to <span class=&quot;highlight&quot;>learn</span> from data without being explicitly programmed.</li><li>It is a subfield of <span class=&quot;highlight&quot;>Artificial Intelligence</span> that focuses on developing models and algorithms.</li><li>It encompasses <span class=&quot;highlight&quot;>probability theory</span>, <span class=&quot;highlight&quot;>information theory</span>, and <span class=&quot;highlight&quot;>computer science</span> to create adaptive <span class=&quot;highlight&quot;>algorithms</span>.</li><li>Applications include image recognition, natural language processing, and autonomous systems.</li></ul>')">Machine Learning</div>
+      
+      <div class="branches">
+        <!-- Historical Context Branch -->
+        <div class="branch">
+          <div class="branch-title" onclick="showInfo('Historical Context', '<ul><li>Machine learning has deep roots, starting in the <span class=&quot;highlight&quot;>16th century</span> with the emergence of <span class=&quot;highlight&quot;>probability theory</span>.</li><li>It evolved through the development of <span class=&quot;highlight&quot;>statistical modeling</span> during the <span class=&quot;highlight&quot;>19th century</span>.</li><li>The advent of <span class=&quot;highlight&quot;>computer science</span> in the <span class=&quot;highlight&quot;>20th century</span> propelled these ideas into modern machine learning.</li><li>This historical progression shows the interdisciplinary nature of ML.</li></ul>')">Historical Context</div>
+          <div class="sub-concepts">
+            <div class="sub-concept" onclick="showInfo('Early Probability', '<ul><li>The foundations of <span class=&quot;highlight&quot;>probability theory</span> were laid by pioneers like <span class=&quot;highlight&quot;>Cardano</span>, <span class=&quot;highlight&quot;>Fermat</span>, <span class=&quot;highlight&quot;>Pascal</span>, and <span class=&quot;highlight&quot;>Bernoulli</span>.</li><li>Their studies of <span class=&quot;highlight&quot;>games of chance</span> established key concepts such as <span class=&quot;highlight&quot;>expected value</span> and <span class=&quot;highlight&quot;>variance</span>.</li><li>This work eventually led to the formulation of the <span class=&quot;highlight&quot;>law of large numbers</span>.</li></ul>')">Early Probability</div>
+            <div class="sub-concept" onclick="showInfo('Statistical Modeling', '<ul><li>The 19th century saw significant progress in <span class=&quot;highlight&quot;>statistical modeling</span>, providing tools to analyze relationships between variables.</li><li>Key developments include <span class=&quot;highlight&quot;>Laplace&apos;s central limit theorem</span>, <span class=&quot;highlight&quot;>Gauss&apos;s method of least squares</span>, and <span class=&quot;highlight&quot;>Galton&apos;s linear regression</span>.</li><li>These advances formed the mathematical foundation for modern <span class=&quot;highlight&quot;>data analysis</span> and predictive modeling.</li></ul>')">Statistical Modeling</div>
+            <div class="sub-concept" onclick="showInfo('Computing History', '<ul><li><span class=&quot;highlight&quot;>Computing machinery</span> evolved from early mechanical devices like <span class=&quot;highlight&quot;>Babbage&apos;s Difference Engine (1822)</span> and the pioneering work of <span class=&quot;highlight&quot;>Ada Lovelace</span> to modern digital computers.</li><li>The introduction of <span class=&quot;highlight&quot;>Boolean logic</span> and electronic circuits in the 20th century revolutionized computing.</li><li>This evolution enabled the complex calculations necessary for training modern <span class=&quot;highlight&quot;>ML models</span>.</li></ul>')">Computing History</div>
+          </div>
+        </div>
+        
+        <!-- Probability Theory Branch -->
+        <div class="branch">
+          <div class="branch-title" onclick="showInfo('Probability Theory', '<ul><li><span class=&quot;highlight&quot;>Probability Theory</span> provides the mathematical basis for modeling uncertainty in <span class=&quot;highlight&quot;>machine learning</span>.</li><li>It was rigorously formalized by <span class=&quot;highlight&quot;>Kolmogorov</span> through a set of axioms.</li><li>This framework underpins the design and analysis of algorithms that operate under uncertainty.</li></ul>')">Probability Theory</div>
+          <div class="sub-concepts">
+            <div class="sub-concept" onclick="showInfo('Kolmogorov Axioms', '<ul><li>There are three foundational axioms of <span class=&quot;highlight&quot;>probability</span>:</li><li><span class=&quot;highlight&quot;>Nonnegativity</span> – probabilities are always ≥ 0.</li><li><span class=&quot;highlight&quot;>Unit measure</span> – the total probability of all outcomes is 1.</li><li><span class=&quot;highlight&quot;>σ-additivity</span> – the probability of a union of disjoint events equals the sum of their probabilities.</li><li>These axioms ensure consistency and rigor in probability calculations.</li></ul>')">Kolmogorov Axioms</div>
+            <div class="sub-concept" onclick="showInfo('Conditional Probability', '<ul><li><span class=&quot;highlight&quot;>Conditional Probability</span> is the likelihood of an event A occurring given that event B has occurred.</li><li>It is mathematically defined as <span class=&quot;highlight&quot;>P(A|B) = P(A∩B)/P(B)</span>, provided P(B) &gt; 0.</li><li>This concept is key for updating beliefs and is central to <span class=&quot;highlight&quot;>Bayesian inference</span>.</li></ul>')">Conditional Probability</div>
+            <div class="sub-concept" onclick="showInfo('Independence', '<ul><li>Two events A and B are considered <span class=&quot;highlight&quot;>independent</span> if the occurrence of one does not affect the probability of the other.</li><li>This is formally defined as <span class=&quot;highlight&quot;>P(A∩B) = P(A)P(B)</span>.</li><li>Independence simplifies many calculations in probability and is often assumed in ML models.</li></ul>')">Independence</div>
+            <div class="sub-concept" onclick="showInfo('Bayes Estimator', '<ul><li>The <span class=&quot;highlight&quot;>Bayes Estimator</span> represents the optimal decision rule in statistical estimation.</li><li>It minimizes the expected loss for a given <span class=&quot;highlight&quot;>loss function</span>, serving as a benchmark for model performance.</li><li>Though idealized, it guides the development of practical estimation techniques.</li></ul>')">Bayes Estimator</div>
+          </div>
+        </div>
+        
+        <!-- Information Theory Branch -->
+        <div class="branch">
+          <div class="branch-title" onclick="showInfo('Information Theory', '<ul><li><span class=&quot;highlight&quot;>Information Theory</span> was pioneered by <span class=&quot;highlight&quot;>Claude Shannon</span> to quantify the transmission and processing of information.</li><li>It provides measures to assess <span class=&quot;highlight&quot;>information content</span> and <span class=&quot;highlight&quot;>uncertainty</span> in data.</li><li>These principles are applied in data compression, error correction, and feature selection in ML.</li></ul>')">Information Theory</div>
+          <div class="sub-concepts">
+            <div class="sub-concept" onclick="showInfo('Entropy', '<ul><li><span class=&quot;highlight&quot;>Entropy</span> quantifies the uncertainty inherent in a probability distribution.</li><li>Defined as <span class=&quot;highlight&quot;>H(X) = -∑P(x)log P(x)</span>, it indicates the average amount of information produced by a stochastic source.</li><li>It is used in decision trees and feature selection to determine the most informative attributes.</li></ul>')">Entropy</div>
+            <div class="sub-concept" onclick="showInfo('Conditional Entropy', '<ul><li><span class=&quot;highlight&quot;>Conditional Entropy</span> measures the remaining uncertainty in one variable after knowing another.</li><li>Expressed as <span class=&quot;highlight&quot;>H(Y|X) = -∑P(x,y)log[P(x,y)/P(x)]</span>, it evaluates the effectiveness of a predictor.</li><li>Lower conditional entropy indicates higher <span class=&quot;highlight&quot;>predictive power</span>.</li></ul>')">Conditional Entropy</div>
+            <div class="sub-concept" onclick="showInfo('Mutual Information', '<ul><li><span class=&quot;highlight&quot;>Mutual Information</span> quantifies how much knowing one variable reduces uncertainty about another.</li><li>It is a symmetric measure and is used in feature selection and clustering.</li><li>Zero mutual information implies that the variables are independent.</li></ul>')">Mutual Information</div>
+            <div class="sub-concept" onclick="showInfo('KL Divergence', '<ul><li><span class=&quot;highlight&quot;>KL Divergence</span> measures the difference between two probability distributions.</li><li>It is commonly used in variational inference and to train generative models like VAEs.</li><li>This measure indicates the information lost when approximating one distribution with another.</li></ul>')">KL Divergence</div>
+          </div>
+        </div>
+        
+        <!-- ML Types Branch -->
+        <div class="branch">
+          <div class="branch-title" onclick="showInfo('ML Types', '<ul><li>This branch covers the primary paradigms of <span class=&quot;highlight&quot;>machine learning</span>.</li><li>Different types address various problem settings and data availability.</li><li>They include supervised, unsupervised, and reinforcement learning.</li></ul>')">ML Types</div>
+          <div class="sub-concepts">
+            <div class="sub-concept" onclick="showInfo('Supervised Learning', '<ul><li><span class=&quot;highlight&quot;>Supervised Learning</span> involves learning a mapping from inputs to outputs using labeled data.</li><li>Common tasks include <span class=&quot;highlight&quot;>classification</span> and <span class=&quot;highlight&quot;>regression</span>.</li><li>Algorithms such as decision trees, SVMs, and neural networks are typical examples.</li></ul>')">Supervised Learning</div>
+            <div class="sub-concept" onclick="showInfo('Reinforcement Learning', '<ul><li><span class=&quot;highlight&quot;>Reinforcement Learning</span> focuses on training agents to take actions that maximize cumulative rewards.</li><li>It involves interaction with an environment and learning from feedback.</li><li>Applications include robotics, game playing, and resource management.</li></ul>')">Reinforcement Learning</div>
+            <div class="sub-concept" onclick="showInfo('Unsupervised Learning', '<ul><li><span class=&quot;highlight&quot;>Unsupervised Learning</span> seeks to discover hidden patterns in unlabeled data.</li><li>Techniques include <span class=&quot;highlight&quot;>clustering</span>, <span class=&quot;highlight&quot;>dimensionality reduction</span>, and <span class=&quot;highlight&quot;>density estimation</span>.</li><li>These methods are useful for exploratory data analysis and anomaly detection.</li></ul>')">Unsupervised Learning</div>
+          </div>
+        </div>
+        
+        <!-- Loss Functions Branch -->
+        <div class="branch">
+          <div class="branch-title" onclick="showInfo('Loss Functions', '<ul><li><span class=&quot;highlight&quot;>Loss Functions</span> quantify the error between predicted and actual values.</li><li>They are crucial for training ML models through optimization.</li><li>Different functions are used depending on the task and data characteristics.</li></ul>')">Loss Functions</div>
+          <div class="sub-concepts">
+            <div class="sub-concept" onclick="showInfo('Mean Squared Error', '<ul><li><span class=&quot;highlight&quot;>Mean Squared Error (MSE)</span> is a widely-used loss function for regression tasks.</li><li>It computes the average of squared differences between predictions and actual values.</li><li>MSE = (1/n)∑(ŷ-y)², and it penalizes larger errors more severely.</li></ul>')">Mean Squared Error</div>
+            <div class="sub-concept" onclick="showInfo('Classification Accuracy', '<ul><li><span class=&quot;highlight&quot;>Classification Accuracy</span> measures the proportion of correct predictions in classification problems.</li><li>It is defined as (1/n)∑I[f(x)=y] and is a simple yet effective metric.</li><li>However, accuracy may be misleading in imbalanced datasets.</li></ul>')">Classification Accuracy</div>
+            <div class="sub-concept" onclick="showInfo('Empirical Risk', '<ul><li><span class=&quot;highlight&quot;>Empirical Risk</span> is the average loss over a finite dataset.</li><li>It serves as a proxy for the true loss and is minimized during training.</li><li>This concept is central to the empirical risk minimization framework.</li></ul>')">Empirical Risk</div>
+            <div class="sub-concept" onclick="showInfo('Bayes Risk', '<ul><li><span class=&quot;highlight&quot;>Bayes Risk</span> is the theoretical minimum loss achievable for a given problem.</li><li>It represents a benchmark that even the best possible model cannot surpass due to inherent uncertainty.</li><li>This risk highlights the limitations imposed by noisy or ambiguous data.</li></ul>')">Bayes Risk</div>
+            <div class="sub-concept" onclick="showInfo('Regret &amp; Reconstruction', '<ul><li>In <span class=&quot;highlight&quot;>reinforcement learning</span>, <span class=&quot;highlight&quot;>regret</span> measures the cumulative loss incurred by not following the optimal policy.</li><li>In <span class=&quot;highlight&quot;>autoencoders</span>, <span class=&quot;highlight&quot;>reconstruction error</span> assesses how accurately compressed data can be reconstructed.</li><li>These metrics help evaluate the performance of learning algorithms.</li></ul>')">Regret &amp; Reconstruction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="overlay" id="overlay"></div>
+  
+  <div class="info-box" id="infoBox">
+    <button class="close-btn" onclick="hideInfo()">×</button>
+    <div class="info-title" id="infoTitle">Title</div>
+    <div class="info-content" id="infoContent">Content</div>
+  </div>
+  
+  <script>
+    function showInfo(title, content) {
+      document.getElementById('infoTitle').textContent = title;
+      document.getElementById('infoContent').innerHTML = content;
+      document.getElementById('infoBox').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+    
+    function hideInfo() {
+      document.getElementById('infoBox').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+    
+    // Close info box when clicking on overlay
+    document.getElementById('overlay').addEventListener('click', hideInfo);
+  </script>
+</body>
+</html>
